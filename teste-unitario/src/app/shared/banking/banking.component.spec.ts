@@ -2,6 +2,7 @@ import { ListComponent } from '../investiments/componets/list/list.component';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BankingComponent } from './banking.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('BankingComponent', () => {
   let component: BankingComponent;
@@ -9,10 +10,12 @@ describe('BankingComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BankingComponent, ListComponent ]
-    })
-    .compileComponents();
-
+      declarations: [BankingComponent, ListComponent],
+      imports: [HttpClientTestingModule],
+    }).compileComponents();
+  });
+  
+  beforeEach(() => {
     fixture = TestBed.createComponent(BankingComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -25,11 +28,11 @@ describe('BankingComponent', () => {
   it(`(U) getPoupanca(): shoud have poupanca = 10`, () => {
     expect(component.getPoupanca).toEqual(10);
   });
-  
+
   it(`(U) getCarteira(): shoud have carteira = 50`, () => {
     expect(component.getCarteira).toEqual(50);
   });
-  
+
   it(`(U) setSacar(): shoud transfer poupanca from carteira`, () => {
     component.setSacar('10');
 
